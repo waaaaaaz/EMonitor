@@ -10,7 +10,7 @@ an environment monitor tool based on scheduled task
 * target hosts only support linux/Unix which could enable ssh
 
 
-### Usage
+## Usage
 
 * Configure hosts info including hostname/username/password/groups from [hosts.py](config/hosts.py)
 
@@ -43,13 +43,13 @@ an environment monitor tool based on scheduled task
 		MAIL_INFO['mail_text'] = "Host: {0}\n\rResult: {1}".format(env.host_string.split(":")[0], result)
 		return MAIL_INFO </code></pre>
 
-* Assign monitor task/ hosts group/ interval time to a scheduler in [run.py](run.py)
+* Assign monitor task/ hosts group/ interval time to a job in [run.py](run.py)
 
 <pre><code>class Schedule(object):
     def __init__(self):
        self.scheduler = BackgroundScheduler()
-       <font style="font-weight:bold;">self.scheduler.add_job(TaskMemCheck('all', 'memory_check').task_execute, 'interval', seconds=3)</font>
-       <font style="font-weight:bold;">self.scheduler.add_job(TaskDiskCheck('all', 'disk_check').task_execute, 'interval', seconds=5)</font>
+       <font style="font-weight:bold;">self.scheduler.add_job(TaskMemCheck('all', 'memory_check').task_execute, 'interval', seconds=3)
+       self.scheduler.add_job(TaskDiskCheck('all', 'disk_check').task_execute, 'interval', seconds=5)</font>
        self.scheduler.print_jobs()</code></pre>
 
 * Execute from cmdline
